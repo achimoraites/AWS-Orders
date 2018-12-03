@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "CompareData",
+  "type": "object",
+  "properties": {
+    "store_id": {"type": "string"},
+    "order_id": {"type": "string"},
+    "user_id": {"type": "string"},
+    "grand_total": {"type": "integer"}
+  },
+  "required": ["store_id", "order_id", "user_id", "grand_total"]
+}
