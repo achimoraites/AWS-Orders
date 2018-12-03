@@ -1,3 +1,3 @@
 # AWS-Orders
 
-<img src="orders-api-img.png" />
+<img src="./imgs/orders-api-img.png" />
