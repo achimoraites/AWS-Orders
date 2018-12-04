@@ -4,7 +4,7 @@ const dynamoDC = new AWS.DynamoDB.DocumentClient({});
 
 module.exports.newOrder = async event => {
   
-  const params = ( store_id, order_id, user_id, grand_total ) => {
+  const params = ( { store_id, order_id, user_id, grand_total } ) => {
     return {
       TableName: 'StoreOrders',
       Item: {
@@ -23,9 +23,9 @@ module.exports.newOrder = async event => {
   };
 
   try {
-    const { store_id, order_id, user_id, grand_total } = event;
+    const { order_id } = event;
     // add the order in the StoreOrders table
-    await dynamoDC.put(params(store_id, order_id, user_id, grand_total)).promise();
+    await dynamoDC.put(params(event)).promise();
     // successful response
     return {
       statusCode: 201,
