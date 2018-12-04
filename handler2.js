@@ -21,6 +21,10 @@ module.exports.userOrders = async event => {
     // It has to be a better way!
     // this solution works but is labor intensive 
     const res = await dynamoDC.scan(params).promise();
+    // if there are no results stop here
+    if (res.Count === 0) {
+      throw new Error(`User ${user_id} has no orders yet !`);
+    }
     // sort by timestamp
     const orders2 = res.Items.sort((a, b)=> a.timestamp < b.timestamp);
     //  5 most recent orders
@@ -37,7 +41,6 @@ module.exports.userOrders = async event => {
     // error has occured !
     return {
       statusCode: 400,
-      body: 'request failed : user has no orders',
       error : error.message
     }; 
   }

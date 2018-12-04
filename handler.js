@@ -36,7 +36,7 @@ module.exports.newOrder = async event => {
     await dynamoDC.put(params(store_id, order_id, user_id, grand_total)).promise();
     // successful response
     return {
-      statusCode: 200,
+      statusCode: 201,
       body: {
         message: `Order ${order_id} submitted successfully`,
       } 
@@ -45,7 +45,6 @@ module.exports.newOrder = async event => {
     // error has occured !
     return {
       statusCode: 400,
-      body: 'request failed',
       error : error.message
     };   
   }
