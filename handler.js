@@ -13,25 +13,17 @@ module.exports.newOrder = async event => {
         user_id,
         grand_total,
         timestamp : Date.now() // create timestamp here
+      },
+      ConditionExpression: "store_id <> :sid and order_id <> :oid",
+      ExpressionAttributeValues:{
+        ":sid":store_id,
+        ":oid":order_id
       }
     };
   };
 
   try {
     const { store_id, order_id, user_id, grand_total } = event;
-    // check the StoreOrders table if the order exists with: store_id + order_id
-    const exists = await dynamoDC.get({
-      TableName: 'StoreOrders',
-      Key: {
-        store_id,
-        order_id
-      }
-    }).promise();
-
-    // if the order already exists stop!
-    if ("Item" in exists) {
-      throw new Error(`Order ${order_id}, already exists in store ${store_id}`);
-    }
     // add the order in the StoreOrders table
     await dynamoDC.put(params(store_id, order_id, user_id, grand_total)).promise();
     // successful response
