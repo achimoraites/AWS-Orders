@@ -34,7 +34,7 @@ module.exports.userOrders = async event => {
     // error has occured !
     return {
       statusCode: 400,
-      body: 'request failed',
+      body: 'request failed : user has no orders',
       error : error.message
     }; 
   }
