@@ -6,7 +6,7 @@
     "store_id": {"type": "string"},
     "order_id": {"type": "string"},
     "user_id": {"type": "string"},
-    "grand_total": {"type": "integer"}
+    "grand_total": {"type": "number"}
   },
   "required": ["store_id", "order_id", "user_id", "grand_total"]
 }
