@@ -33,7 +33,7 @@ module.exports.userOrders = async event => {
     // successful response
     return {
       statusCode: 200,
-      orders,
+      orders : orders.Items,
       body: {
         message: `Orders retrieved successfully`,
       } 
