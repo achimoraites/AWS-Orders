@@ -29,7 +29,7 @@ module.exports.newOrder = async event => {
     }).promise();
 
     // if the order already exists stop!
-    if("Item" in exists) {
+    if ("Item" in exists) {
       throw new Error(`Order ${order_id}, already exists in store ${store_id}`);
     }
     // add the order in the StoreOrders table
@@ -39,8 +39,7 @@ module.exports.newOrder = async event => {
       statusCode: 200,
       body: {
         message: `Order ${order_id} submitted successfully`,
-      },
-    
+      } 
     };
   } catch (error) {
     // error has occured !
