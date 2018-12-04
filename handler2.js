@@ -13,7 +13,9 @@ module.exports.userOrders = async event => {
     const { user_id } = event;
     const params=  {
       TableName:'StoreOrders',
-      IndexName: 'user_id-timestamp-index',
+      IndexName: 'user_id-timestamp-index', 
+      ScanIndexForward: false,           
+      Limit: 5,
       KeyConditionExpression: "user_id = :ui",
       ExpressionAttributeValues: {
         ":ui": user_id
@@ -21,16 +23,13 @@ module.exports.userOrders = async event => {
     };
    
     console.log(user_id);
-    // this solution works but is labor intensive 
-    const res = await dynamoDC.query(params).promise();
+    // this solution is more elegant!
+    const orders = await dynamoDC.query(params).promise();
     // if there are no results stop here
-    if (res.Count === 0) {
+    if (orders.Count === 0) {
       throw new Error(`User ${user_id} has no orders yet !`);
     }
-    // sort by timestamp
-    const orders2 = res.Items.sort((a, b)=> a.timestamp < b.timestamp);
-    //  5 most recent orders
-    const orders = orders2.slice(0, 5);  
+ 
     // successful response
     return {
       statusCode: 200,
