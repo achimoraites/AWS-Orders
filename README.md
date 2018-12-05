@@ -72,7 +72,7 @@ Each request should have:
  **Sample Expected returns**
 <br>
  - **User has ordered before**
-<br>
+
 ```
 {
     "statusCode": 200,
