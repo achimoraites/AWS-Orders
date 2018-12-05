@@ -24,13 +24,13 @@ Sample Request body :
 "grand_total" : 110.00
 }
 
-```
+
 <br><br>
-** Expected returns
+ Expected returns
 <br>
 1. Order is new
 <br>
-```
+
 {
     "statusCode": 201,
     "body": {
