@@ -3,7 +3,8 @@
   "title": "CompareData",
   "type": "object",
   "properties": {
-    "user_id": {"type": "string"}
+    "user_id": {"type": "string"},
+    "store_id": {"type": "string"}
   },
-  "required": ["user_id"]
+  "required": ["user_id","store_id"]
 }

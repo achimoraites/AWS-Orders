@@ -10,15 +10,19 @@ module.exports.userOrders = async event => {
     // ... The results should be the last 5 orders by the given user
 
     // Get users orders using user_id
-    const { user_id } = event;
+    const { user_id, store_id } = event;
     const params=  {
       TableName:'StoreOrders',
-      IndexName: 'user_id-timestamp-index', 
+      IndexName: 'store_id-timestamp-index', 
       ScanIndexForward: false,           
       Limit: 5,
-      KeyConditionExpression: "user_id = :ui",
+      KeyConditionExpression: "store_id = :sid and #time < :t",
+      ExpressionAttributeNames:{
+        "#time": "timestamp"
+      },
       ExpressionAttributeValues: {
-        ":ui": user_id
+        ":sid" : store_id,
+        ":t": Date.now()
       }
     };
    
@@ -29,11 +33,15 @@ module.exports.userOrders = async event => {
     if (orders.Count === 0) {
       throw new Error(`User ${user_id} has no orders yet !`);
     }
+
+    const userOrders = orders.Items.filter(order =>{
+      return order.user_id === user_id;
+    });
  
     // successful response
     return {
       statusCode: 200,
-      orders : orders.Items,
+      orders : userOrders,
       body: {
         message: `Orders retrieved successfully`,
       } 

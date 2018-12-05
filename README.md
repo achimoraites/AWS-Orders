@@ -61,13 +61,15 @@ Returns the last 5 orders of the given user .
 Each request should have:
 
 - user_id : String
+- store_id : String
 
 
 **Sample Request body**:
 
 ```
 {
-"user_id": "user1"
+"user_id": "user1",
+"store_id": "store1"
 }
 
 ```
