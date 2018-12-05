@@ -6,7 +6,7 @@
 ## API Documentation
 
 ### [/new-order](https://github.com/Cyb3rN4u7/AWS-Orders#post--new-order)
-<br>
+
 ### [/user-orders](https://github.com/Cyb3rN4u7/AWS-Orders#post--user-orders)
 
 ### POST:  /new-order
