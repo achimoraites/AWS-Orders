@@ -14,7 +14,7 @@ Each order should have:
 - user_id: String
 - grand_total : Number
 <br>
-Sample Request body :
+**Sample Request body** :
 
 ```
 {
@@ -26,9 +26,9 @@ Sample Request body :
 
 ```
 
- Expected returns
+ _Expected returns_
 <br>
- Order is new
+ - **Order is new**
 
 ```
 {
@@ -40,7 +40,7 @@ Sample Request body :
 
 ```
 
-Order already exists (error)
+- **Order already exists (error)**
 
 ```
 {
@@ -59,7 +59,7 @@ Each request should have:
 - user_id : String
 
 
-Sample Request body :
+**Sample Request body**:
 
 ```
 {
@@ -69,9 +69,9 @@ Sample Request body :
 ```
 
 
- Sample Expected returns
+ **Sample Expected returns**
 <br>
- User has ordered before
+ - **User has ordered before**
 <br>
 ```
 {
@@ -120,7 +120,7 @@ Sample Request body :
 
 ```
 
-User does'nt have any orders (error)
+- **User does'nt have any orders (error)**
 
 ```
 {
