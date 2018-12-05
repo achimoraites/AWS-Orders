@@ -24,13 +24,13 @@ Sample Request body :
 "grand_total" : 110.00
 }
 
+```
 
-<br><br>
  Expected returns
 <br>
-1. Order is new
-<br>
+ Order is new
 
+```
 {
     "statusCode": 201,
     "body": {
@@ -40,7 +40,7 @@ Sample Request body :
 
 ```
 
-2. Order already exists (error)
+Order already exists (error)
 
 ```
 {
@@ -68,10 +68,10 @@ Sample Request body :
 
 ```
 
-<br><br>
-** Sample Expected returns
+
+ Sample Expected returns
 <br>
-1. User has ordered before
+ User has ordered before
 <br>
 ```
 {
@@ -120,7 +120,7 @@ Sample Request body :
 
 ```
 
-2. User does'nt have any orders (error)
+User does'nt have any orders (error)
 
 ```
 {
