@@ -29,14 +29,15 @@ module.exports.userOrders = async event => {
     console.log(user_id);
     // this solution is more elegant!
     const orders = await dynamoDC.query(params).promise();
-    // if there are no results stop here
-    if (orders.Count === 0) {
-      throw new Error(`User ${user_id} has no orders yet !`);
-    }
-
+   
     const userOrders = orders.Items.filter(order =>{
       return order.user_id === user_id;
     });
+
+    // if there are no results stop here
+    if (userOrders.length === 0) {
+      throw new Error(`User ${user_id} has no orders yet !`);
+    }
  
     // successful response
     return {
