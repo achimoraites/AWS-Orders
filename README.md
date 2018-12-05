@@ -11,6 +11,7 @@ Each order should have:
 - grand_total : Number
 <br>
 Sample Request body :
+
 ```
 {
 "store_id" : "store01",
