@@ -53,7 +53,7 @@ Sample Request body :
 ### POST:  /user-orders
 Returns the last 5 orders of the given user .
 <br>
-Each order should have:
+Each request should have:
 
 - user_id : String
 
