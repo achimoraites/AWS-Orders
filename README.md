@@ -1,7 +1,8 @@
 # AWS-Orders
 ## Simple Orders API
 <img src="./imgs/orders-api-img.png" />
-<br><br>
+
+
 ## API Documentation
 <br><br>
 ### POST:  /new-order
