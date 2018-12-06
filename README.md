@@ -85,38 +85,38 @@ Each request should have:
     "orders": [
         {
             "user_id": "user1",
-            "grand_total": 11000,
+            "grand_total": 110,
+            "order_id": "order8",
+            "store_id": "store1",
+            "timestamp": "user1#1544092158240"
+        },
+        {
+            "user_id": "user1",
+            "grand_total": 110,
             "order_id": "order7",
             "store_id": "store1",
-            "timestamp": 1543928923665
+            "timestamp": "user1#1544092152000"
         },
         {
             "user_id": "user1",
-            "grand_total": 11000,
+            "grand_total": 110,
             "order_id": "order6",
             "store_id": "store1",
-            "timestamp": 1543917649924
+            "timestamp": "user1#1544092147627"
         },
         {
             "user_id": "user1",
-            "grand_total": 11000,
+            "grand_total": 110,
             "order_id": "order5",
             "store_id": "store1",
-            "timestamp": 1543917643882
+            "timestamp": "user1#1544092143040"
         },
         {
             "user_id": "user1",
-            "grand_total": 11000,
+            "grand_total": 110,
             "order_id": "order4",
             "store_id": "store1",
-            "timestamp": 1543917637148
-        },
-        {
-            "user_id": "user1",
-            "grand_total": 11000,
-            "order_id": "order3",
-            "store_id": "store1",
-            "timestamp": 1543917630790
+            "timestamp": "user1#1544092138603"
         }
     ],
     "body": {
