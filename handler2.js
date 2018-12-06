@@ -15,14 +15,16 @@ module.exports.userOrders = async event => {
       TableName:'StoreOrders',
       IndexName: 'store_id-timestamp-index', 
       ScanIndexForward: false,           
-      Limit: 5,
+      // Limit: 5,
       KeyConditionExpression: "store_id = :sid and #time < :t",
+      FilterExpression: "user_id = :uid",
       ExpressionAttributeNames:{
         "#time": "timestamp"
       },
       ExpressionAttributeValues: {
         ":sid" : store_id,
-        ":t": Date.now()
+        ":t": Date.now(),
+        ":uid" : user_id
       }
     };
    
@@ -30,19 +32,16 @@ module.exports.userOrders = async event => {
     // this solution is more elegant!
     const orders = await dynamoDC.query(params).promise();
    
-    const userOrders = orders.Items.filter(order =>{
-      return order.user_id === user_id;
-    });
 
     // if there are no results stop here
-    if (userOrders.length === 0) {
+    if (orders.Items.length === 0) {
       throw new Error(`User ${user_id} has no orders yet !`);
     }
  
     // successful response
     return {
       statusCode: 200,
-      orders : userOrders,
+      orders : orders.Items,
       body: {
         message: `Orders retrieved successfully`,
       } 
