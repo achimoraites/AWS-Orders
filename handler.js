@@ -6,13 +6,13 @@ module.exports.newOrder = async event => {
   
   const params = ( { store_id, order_id, user_id, grand_total } ) => {
     return {
-      TableName: 'StoreOrders',
+      TableName: 'StoreOrders2',
       Item: {
         store_id,
         order_id,
         user_id,
         grand_total,
-        timestamp : Date.now() // create timestamp here
+        timestamp : `${user_id}#${Date.now().toString()}` // create timestamp here
       },
       ConditionExpression: "store_id <> :sid and order_id <> :oid",
       ExpressionAttributeValues:{

@@ -12,12 +12,14 @@ module.exports.userOrders = async event => {
     // Get users orders using user_id
     const { user_id, store_id } = event;
     const params=  {
-      TableName:'StoreOrders',
+      TableName:'StoreOrders2',
       IndexName: 'store_id-timestamp-index', 
-      ScanIndexForward: false,           
-      KeyConditionExpression: "store_id = :sid",
-      SortKey: "store_id#user_id",
-      FilterExpression: "user_id = :uid",
+      ScanIndexForward: false, 
+      Limit: 5,          
+      KeyConditionExpression: "store_id = :sid and begins_with ( #time, :uid )",
+      ExpressionAttributeNames:{
+        "#time": "timestamp"
+      },
       ExpressionAttributeValues: {
         ":sid" : store_id,
         ":uid" : user_id
@@ -34,12 +36,11 @@ module.exports.userOrders = async event => {
       throw new Error(`User ${user_id} has no orders yet !`);
     }
 
-    const processed = orders.Items.slice(0,5);
  
     // successful response
     return {
       statusCode: 200,
-      orders : processed,
+      orders : orders.Items,
       body: {
         message: `Orders retrieved successfully`,
       } 
