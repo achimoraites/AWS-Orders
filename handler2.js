@@ -15,8 +15,9 @@ module.exports.userOrders = async event => {
       TableName:'StoreOrders',
       IndexName: 'store_id-timestamp-index', 
       ScanIndexForward: false,           
-      // Limit: 5,
+      Limit: 5,
       KeyConditionExpression: "store_id = :sid and #time < :t",
+      SortKey: "store_id#user_id#time",
       FilterExpression: "user_id = :uid",
       ExpressionAttributeNames:{
         "#time": "timestamp"
