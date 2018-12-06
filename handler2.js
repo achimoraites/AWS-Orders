@@ -15,16 +15,11 @@ module.exports.userOrders = async event => {
       TableName:'StoreOrders',
       IndexName: 'store_id-timestamp-index', 
       ScanIndexForward: false,           
-      Limit: 5,
-      KeyConditionExpression: "store_id = :sid and #time < :t",
-      SortKey: "store_id#user_id#time",
+      KeyConditionExpression: "store_id = :sid",
+      SortKey: "store_id#user_id",
       FilterExpression: "user_id = :uid",
-      ExpressionAttributeNames:{
-        "#time": "timestamp"
-      },
       ExpressionAttributeValues: {
         ":sid" : store_id,
-        ":t": Date.now(),
         ":uid" : user_id
       }
     };
@@ -38,11 +33,13 @@ module.exports.userOrders = async event => {
     if (orders.Items.length === 0) {
       throw new Error(`User ${user_id} has no orders yet !`);
     }
+
+    const processed = orders.Items.slice(0,5);
  
     // successful response
     return {
       statusCode: 200,
-      orders : orders.Items,
+      orders : processed,
       body: {
         message: `Orders retrieved successfully`,
       } 
