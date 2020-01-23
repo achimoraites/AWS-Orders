@@ -1,4 +1,12 @@
 # AWS-Orders
+
+## Description
+A simple api gateway demostration using the serverless framwork to build a simple backend in AWS.
+
+The API can handle new orders and dislay the latest (max 5) orders of the user.
+
+# How it works
+
 ## Simple Orders API
 <img src="./imgs/orders-api-img.png" />
 
